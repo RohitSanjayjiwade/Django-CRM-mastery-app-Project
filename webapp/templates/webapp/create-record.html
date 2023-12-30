@@ -1,0 +1,90 @@
+{% extends 'webapp/base.html' %}
+
+
+{% block title %}Create Record Form{% endblock %}
+
+
+{% block content %}
+
+<body>
+
+	<div class="container bg-light shadow-md p-5 form-layout form-layoutt">
+		<h3> Create Record </h3>
+
+		<h5>Start adding in the required details for your record.</h5>
+
+		<hr>
+		<br>
+
+		<form method="post" autocomplete="off">
+			
+			{% csrf_token %}
+
+			<div class="mb-3">
+				<label class="col-form-label">First Name</label><br>
+				{{ form.first_name }}
+			</div>
+
+			<div class="mb-3">
+				<label class="col-form-label mt-2">Last Name</label><br>
+				{{ form.last_name }}
+			</div>
+
+			<div class="mb-3">
+				<label class="col-form-label mt-2">Email</label><br>
+				{{ form.email }}
+			</div>
+
+			<div class="mb-3">
+				<label class="col-form-label mt-2">Phone</label><br>
+				{{ form.phone }}
+			</div>
+
+			<div class="mb-3">
+				<label class="col-form-label mt-2">Address</label><br>
+				{{ form.address }}
+			</div>
+
+			<div class="mb-3">
+				<label class="col-form-label mt-2">City</label><br>
+				{{ form.city }}
+			</div>
+
+			<div class="mb-3">
+				<label class="col-form-label mt-2">Province</label><br>
+				{{ form.province }}
+			</div>
+
+			<div class="mb-3">
+				<label class="col-form-label mt-2">Country</label><br>
+				{{ form.country }}
+			</div>
+
+			{% if form.errors or form.non_field_errors %}
+				<div class="alert alert-dismissible alert-danger rounded-3">
+					{% for field in form %}
+						{{ field.errors }}
+					{% endfor %}
+					
+					{{ form.non_field_errors }}
+				</div>
+			{% endif %}
+
+
+			<br>
+
+			<button type="submit" class="btn  btn-primary "> Create Record &nbsp; <i class="fa fa-check" aria-hidden="true"></i> </button>
+
+			&nbsp;
+
+			<a href="{% url 'dashboard' %}" class="btn btn-secondary"> Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+
+		</form>
+
+
+	</div>
+
+	<br>
+</body>
+
+{% endblock %}

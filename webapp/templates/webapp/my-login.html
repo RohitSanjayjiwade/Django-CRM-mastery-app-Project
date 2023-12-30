@@ -1,0 +1,63 @@
+{% extends 'webapp/base.html' %}
+
+<!-- {% load crispy_forms_tags %} -->
+
+{% block title %}Login page{% endblock %}
+
+{% block content %}
+
+<body>
+
+	<div class="container bg-light shadow-md p-5 form-layout form-layoutt">
+		<h3> Login to your Account </h3>
+
+		<hr>
+		<br>
+
+		<form action="." method="post" autocomplete="off">
+			
+			{% csrf_token %}
+
+			<div class="mb-3">
+				<label class="col-form-label">Username*</label><br>
+				{{ form.username }}
+			</div>
+
+			<div class="mb-3">
+				<label class="col-form-label mt-2">Password*</label><br>
+				{{ form.password }}
+			</div>
+
+			{% if form.errors or form.non_field_errors %}
+				<div class="alert alert-dismissible alert-danger rounded-3">
+					{% for field in form %}
+						{{ field.errors }}
+					{% endfor %}
+					
+					{{ form.non_field_errors }}
+				</div>
+			{% endif %}
+
+
+			<br>
+
+			<button type="submit" class="btn btn-lg btn-primary w-100"> Login &nbsp; <i class="fa fa-key" aria-hidden="true"></i> </button>
+
+		</form>
+
+		<br>
+
+		<div class="text-center">
+
+			<p> Don't have an account? </p> <a href="{% url 'register' %}"> Register </a>
+
+		</div>
+
+
+	</div>
+
+	<br>
+
+</body>
+
+{% endblock %}
